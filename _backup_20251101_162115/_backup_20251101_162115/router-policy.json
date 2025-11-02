@@ -1,0 +1,21 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    { "Sid":"LeadsRead",   "Effect":"Allow",
+      "Action": ["dynamodb:DescribeTable","dynamodb:GetItem","dynamodb:Query","dynamodb:Scan"],
+      "Resource": "arn:aws:dynamodb:us-east-1:724121675195:table/buyersboard_leads"
+    },
+    { "Sid":"SendlogWrite","Effect":"Allow",
+      "Action": ["dynamodb:DescribeTable","dynamodb:PutItem","dynamodb:UpdateItem"],
+      "Resource": "arn:aws:dynamodb:us-east-1:724121675195:table/buyersboard_sendlog"
+    },
+    { "Sid":"SsmGetRoutes","Effect":"Allow",
+      "Action": ["ssm:GetParameter"],
+      "Resource": "arn:aws:ssm:us-east-1:724121675195:parameter/buyersboard/dev/slack_routes"
+    },
+    { "Sid":"SesSend","Effect":"Allow",
+      "Action": ["ses:SendEmail","ses:SendRawEmail"],
+      "Resource": "*"
+    }
+  ]
+}

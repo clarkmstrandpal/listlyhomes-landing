@@ -1,0 +1,100 @@
+﻿import { Link } from "react-router-dom";
+import LeadForm from "../components/LeadForm.jsx";
+
+export default function Landing() {
+  return (
+    <main>
+      {/* HERO */}
+      <section className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-navy-900 via-cobalt-800/40 to-graphite-900 -z-10" />
+        <div className="absolute -top-24 -right-24 w-[38rem] h-[38rem] rounded-full
+                        bg-gradient-to-tr from-cobalt-600 via-aqua-400 to-magenta-500
+                        opacity-20 blur-3xl -z-10" />
+        <div className="max-w-7xl mx-auto px-4 py-16 lg:py-20 grid lg:grid-cols-2 gap-10 items-center">
+          <div>
+            <h1 className="text-4xl lg:text-6xl font-black leading-tight">
+              Real <span className="bg-gradient-to-r from-magenta-500 via-gold-400 to-aqua-400 bg-clip-text text-transparent">Real Estate</span> Leads
+              <div className="mt-2 text-2xl lg:text-3xl font-semibold text-aqua-300">
+                Delivered to the right agent—automatically.
+              </div>
+            </h1>
+            <p className="mt-6 text-lg text-gray-300 max-w-xl">
+              BuyersBoard finds motivated buyers & sellers across trusted public sources,
+              routes them by ZIP, and puts them in your inbox fast—with audit trails and filters that actually help.
+            </p>
+
+            <div className="mt-8 flex flex-wrap gap-4">
+              <Link
+                to="/form"
+                className="inline-flex items-center rounded-2xl px-6 py-3 text-base font-semibold
+                           bg-cobalt-600 hover:bg-cobalt-500 text-white shadow-lg"
+              >
+                Get Started
+              </Link>
+              <a
+                href="#features"
+                className="inline-flex items-center rounded-2xl px-6 py-3 text-base font-semibold
+                           border border-graphite-700 hover:border-graphite-500 text-white"
+              >
+                See Features
+              </a>
+            </div>
+
+            <div className="mt-10 grid grid-cols-3 gap-6 max-w-xl text-center">
+              <Stat k="90%+" v="Inbox Delivery" />
+              <Stat k="ZIP" v="Smart Routing" />
+              <Stat k="Live" v="Filtering" />
+            </div>
+          </div>
+
+          <div className="bg-graphite-900/60 rounded-3xl p-6 lg:p-8 shadow-2xl border border-graphite-800">
+            <h2 className="text-xl font-bold mb-4">Quick Start</h2>
+            <LeadForm />
+          </div>
+        </div>
+      </section>
+
+      {/* FEATURES */}
+      <section id="features" className="border-t border-graphite-800 bg-graphite-950">
+        <div className="max-w-7xl mx-auto px-4 py-12 grid md:grid-cols-3 gap-6">
+          {[
+            ["ZIP Routing", "Route by ZIP prefix or exact code, throttle per agent, audit everything."],
+            ["Trustworthy Sources", "ToS-compliant connectors (Reddit, forums, public records, etc.)."],
+            ["Filters that Matter", "Contactability score, recency, geo hit, and more."],
+          ].map(([title, desc]) => (
+            <div key={title} className="rounded-2xl p-6 bg-graphite-900/60 border border-graphite-800 shadow-lg">
+              <h3 className="text-lg font-bold text-aqua-300">{title}</h3>
+              <p className="mt-2 text-gray-300">{desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* HOW IT WORKS */}
+      <section id="how" className="border-t border-graphite-800 bg-graphite-950">
+        <div className="max-w-7xl mx-auto px-4 py-12 grid lg:grid-cols-3 gap-6">
+          {[
+            ["Ingest", "We ingest public leads with provenance and de-dupe at the edge."],
+            ["Score", "We score contactability & attributes, then geo-verify."],
+            ["Route", "Leads are routed to the best agent using daily caps & fairness."],
+          ].map(([title, desc], i) => (
+            <div key={title} className="rounded-2xl p-6 bg-graphite-900/60 border border-graphite-800 shadow-lg">
+              <div className="text-gold-400 font-extrabold">{String(i+1).padStart(2,"0")}</div>
+              <h3 className="text-lg font-bold mt-1">{title}</h3>
+              <p className="mt-2 text-gray-300">{desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+    </main>
+  );
+}
+
+function Stat({k, v}) {
+  return (
+    <div className="rounded-2xl p-4 bg-graphite-900/60 border border-graphite-800">
+      <div className="text-2xl font-extrabold text-gold-300">{k}</div>
+      <div className="text-gray-300">{v}</div>
+    </div>
+  );
+}

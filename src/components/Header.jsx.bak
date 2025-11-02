@@ -1,0 +1,37 @@
+﻿import React from "react";
+
+export default function Header() {
+  return (
+    <header className="w-full bg-white border-b border-slate-200">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="flex h-24 md:h-28 lg:h-32 items-center justify-between">
+          {/* Brand (large horizontal logo) */}
+          <a href="/" className="flex items-center gap-4">
+            <img
+              src="/img/horzontal_logo.png"
+              alt="BuyerBoard"
+              className="h-20 md:h-24 lg:h-28 w-auto select-none"
+              draggable="false"
+            />
+          </a>
+
+          {/* Nav (text links only) */}
+          <nav className="hidden md:flex items-center gap-10 text-base">
+            <a href="#how" className="text-slate-600 hover:text-slate-900">How it works</a>
+            <a href="#buyers" className="text-slate-600 hover:text-slate-900">Buyer Form</a>
+            <a href="#dashboard" className="text-slate-600 hover:text-slate-900">Dashboard</a>
+          </nav>
+
+          {/* Auth/CTA */}
+          <div className="flex items-center gap-4">
+            <a href="#login" className="hidden sm:inline text-slate-600 hover:text-slate-900">Log in</a>
+            <a href="/signup" className="rounded-full px-5 py-3 text-white shadow-sm bg-gradient-to-r from-[#0E57FF] to-[#14C6F1]">
+              Get Started
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+  );
+}
+

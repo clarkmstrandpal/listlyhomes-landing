@@ -1,0 +1,18 @@
+{
+    "version":  "2.0",
+    "headers":  {
+                    "x-bb-signature":  "14dbb3d5fd6e7a3d8c23aa170494896ab17f9cf3247e74f315173eb726176154",
+                    "content-type":  "application/json"
+                },
+    "rawPath":  "/v1/router",
+    "requestContext":  {
+                           "http":  {
+                                        "method":  "POST",
+                                        "path":  "/v1/router"
+                                    }
+                       },
+    "routeKey":  "POST /v1/router",
+    "rawQueryString":  "",
+    "body":  "{\"id\":\"9c7567bb-c570-4f50-845e-62e2e4579554\",\"command\":\"claim\"}",
+    "isBase64Encoded":  false
+}

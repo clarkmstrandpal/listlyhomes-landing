@@ -1,0 +1,41 @@
+﻿import { useState } from "react";
+import { postJSON } from "../lib/api";
+
+export default function LeadForm(){
+  const [form, setForm] = useState({ name:"", email:"", phone:"", zip:"" });
+  const [msg, setMsg] = useState("");
+
+  const update = (k) => (e) => setForm(s => ({...s, [k]: e.target.value}));
+
+  async function onSubmit(e){
+    e.preventDefault();
+    setMsg("Submitting");
+    try{
+      await postJSON("/v1/ingest", {
+        source: "landing",
+        intent: "buy",
+        ...form,
+      });
+      setMsg("Thanks! Well be in touch shortly.");
+      setForm({ name:"", email:"", phone:"", zip:"" });
+    }catch(err){
+      setMsg(err?.data?.error || "Submission failed");
+    }
+  }
+
+  return (
+    <form id="form" onSubmit={onSubmit} className="bg-white rounded-2xl shadow-xl p-6 space-y-3">
+      <h3 className="text-xl font-semibold">Tell us what youre looking for</h3>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <input className="input" placeholder="Name"  value={form.name}  onChange={update("name")} />
+        <input className="input" placeholder="Email" value={form.email} onChange={update("email")} />
+        <input className="input" placeholder="Phone" value={form.phone} onChange={update("phone")} />
+        <input className="input" placeholder="ZIP code" value={form.zip} onChange={update("zip")} />
+      </div>
+      <button className="w-full h-11 rounded-xl bg-gradient-to-r from-[#0E57FF] to-[#14C6F1] text-white font-semibold">
+        Get matched to an agent
+      </button>
+      {msg && <div className="text-sm text-slate-700">{msg}</div>}
+    </form>
+  );
+}

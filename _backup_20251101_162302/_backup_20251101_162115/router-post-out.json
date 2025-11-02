@@ -1,0 +1,1 @@
+{"statusCode": 405, "headers": {"Content-Type": "application/json"}, "body": "{\"error\": \"method not allowed\"}"}

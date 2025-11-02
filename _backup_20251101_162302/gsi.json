@@ -1,0 +1,10 @@
+[{
+  "Create": {
+    "IndexName": "agent_id_created_index",
+    "KeySchema": [
+      {"AttributeName":"agent_id","KeyType":"HASH"},
+      {"AttributeName":"created_ts","KeyType":"RANGE"}
+    ],
+    "Projection": {"ProjectionType":"ALL"}
+  }
+}]

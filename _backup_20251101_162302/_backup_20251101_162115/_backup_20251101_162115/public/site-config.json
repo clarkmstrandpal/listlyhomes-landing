@@ -1,0 +1,4 @@
+{
+  "api_base": "https://a6xqo6hym9.execute-api.us-east-1.amazonaws.com/dev",
+  "hmac_secret": "<TEMP_DEMO_SECRET>"
+}

@@ -1,0 +1,16 @@
+﻿import Header from "../components/Header.jsx";
+export default function Pricing() {
+  return (
+    <div className="min-h-screen">
+      <Header />
+      <main className="p-10 max-w-4xl mx-auto">
+        <h1 className="text-2xl font-semibold">Pricing</h1>
+        <p className="mt-3 text-gray-600">Early access founders pricing. Limited seats per state.</p>
+        <div className="mt-6 border rounded-2xl p-6">
+          <div className="text-xl font-bold">$49/mo per agent</div>
+          <div className="text-sm text-gray-600">Cancel anytime. Scale as you grow.</div>
+        </div>
+      </main>
+    </div>
+  );
+}

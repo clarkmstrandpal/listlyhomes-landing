@@ -1,0 +1,1 @@
+﻿export const API_BASE = (import.meta.env?.VITE_API_BASE || "https://2v0q4zm2v6.execute-api.us-east-1.amazonaws.com/dev").replace(/\/$/,"");

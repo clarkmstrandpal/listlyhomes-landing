@@ -1,0 +1,18 @@
+﻿{
+    "Changes":  [
+                    {
+                        "ResourceRecordSet":  {
+                                                  "TTL":  300,
+                                                  "Name":  "_amazonses.listlyhomes.com.",
+                                                  "Type":  "TXT",
+                                                  "ResourceRecords":  [
+                                                                          {
+                                                                              "Value":  "\"\""
+                                                                          }
+                                                                      ]
+                                              },
+                        "Action":  "UPSERT"
+                    }
+                ],
+    "Comment":  "SES identity + DKIM for listlyhomes.com"
+}

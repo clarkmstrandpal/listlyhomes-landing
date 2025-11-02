@@ -1,0 +1,44 @@
+﻿@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Brand palette tokens */
+:root {
+  --navy-900: #0D1A2B;
+  --cobalt-600: #0E57FF;
+  --aqua-400: #14C6F1;
+  --magenta-500:#D6248F;
+  --gold-400: #FFC133;
+  --graphite-950:#0B0F14;
+  --graphite-900:#101820;
+  --graphite-800:#2F3A44;
+  --soft-gray: #8D98A3;
+}
+
+/* Utility-ish classes to align with Tailwind usage */
+.bg-navy-900   { background-color: var(--navy-900); }
+.text-navy-900 { color: var(--navy-900); }
+
+.bg-cobalt-600   { background-color: var(--cobalt-600); }
+.text-cobalt-600 { color: var(--cobalt-600); }
+
+.bg-aqua-400   { background-color: var(--aqua-400); }
+.text-aqua-400 { color: var(--aqua-400); }
+
+.bg-magenta-500   { background-color: var(--magenta-500); }
+.text-magenta-500 { color: var(--magenta-500); }
+
+.bg-gold-400   { background-color: var(--gold-400); }
+.text-gold-400 { color: var(--gold-400); }
+.text-gold-300 { color: #FFD36B; }
+
+.bg-graphite-950 { background-color: var(--graphite-950); }
+.bg-graphite-900 { background-color: var(--graphite-900); }
+.border-graphite-800 { border-color: var(--graphite-800); }
+.text-soft-gray { color: var(--soft-gray); }
+
+/* Keep default body styles tidy */
+html, body, #root {
+  height: 100%;
+  background: var(--graphite-950);
+}
