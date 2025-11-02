@@ -1,4 +1,4 @@
-﻿*{box-sizing:border-box}
+*{box-sizing:border-box}
 body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;background:#fff;color:#0f172a}
 a{color:#0E57FF;text-decoration:none}
 a:hover{text-decoration:underline}
@@ -11,7 +11,7 @@ a:hover{text-decoration:underline}
 .hero{padding:48px 0}
 .grid{display:grid;gap:16px}
 .grid-2{grid-template-columns:1fr 1fr}
-.card{background:#fff;border:1px solid #e5e7eb;border-radius:20px;padding:16px;position:relative}
+\\.card{transition:transform .15s ease, box-shadow .15s ease; transition:transform .15s ease, box-shadow .15s ease; background:#fff;border:1px solid #e5e7eb;border-radius:20px;padding:16px;position:relative}
 .card.center{text-align:center}
 .card .accent{position:absolute;left:0;top:0;height:4px;width:100%;border-top-left-radius:20px;border-top-right-radius:20px;
   background:linear-gradient(90deg,#0E57FF,#14C6F1)}
@@ -25,3 +25,9 @@ a:hover{text-decoration:underline}
 .statnum{font-weight:800;font-size:28px}
 .statcap{color:#64748b;font-size:12px}
 .icon{width:24px;height:24px;margin:0 auto 6px auto;display:block}
+
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(2,6,23,.06)}
+
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(2,6,23,.06)}
+
+@media (max-width:768px){ .logo{height:52px} }

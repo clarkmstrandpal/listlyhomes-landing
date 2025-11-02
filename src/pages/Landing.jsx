@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 import Header from "../components/Header.jsx";
 
 const Icons = {
@@ -53,7 +53,7 @@ export default function Landing(){
             </div>
           </div>
           <div>
-            <img src="/img/hero-bg.jpg" alt="" style={{width:"100%",height:360,objectFit:"cover",borderRadius:24,border:"1px solid #e5e7eb"}} />
+            <img src="/img/hero-main.jpg" alt="" style={{width:"100%",height:360,objectFit:"cover",borderRadius:24,border:"1px solid #e5e7eb"}} />
           </div>
         </div>
 
