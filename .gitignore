@@ -1,24 +1,19 @@
-# Logs
-logs
+﻿# node / vite
+node_modules/
+dist/
+.vite/
 *.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
+# env/secrets
+.env*
+*.pem
 
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
+# editor/os
 .DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+Thumbs.db
+
+# local backups
+*.bak
+
+# don't commit build caches
+.sass-cache/

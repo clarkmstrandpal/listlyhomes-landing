@@ -1,37 +1,30 @@
-﻿import React from "react";
+﻿import { Link, NavLink } from "react-router-dom";
 
-export default function Header() {
+export default function Header(){
   return (
-    <header className="w-full bg-white border-b border-slate-200">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-24 md:h-28 lg:h-32 items-center justify-between">
-          {/* Brand (large horizontal logo) */}
-          <a href="/" className="flex items-center gap-4">
-            <img
-              src="/img/horzontal_logo.png"
-              alt="BuyerBoard"
-              className="h-20 md:h-24 lg:h-28 w-auto select-none"
-              draggable="false"
-            />
-          </a>
+    <header className="header sticky top-0 bg-white z-50">
+      <div className="mx-auto max-w-6xl px-4 h-16 flex items-center justify-between">
+        {/* Left: Brand */}
+        <Link to="/" className="flex items-center gap-2" aria-label="Listly Homes">
+          <img src="/img/horzontal_logo.png" alt="Listly Homes" style={{height:"auto", maxHeight:"64px"}} />
+        </Link>
 
-          {/* Nav (text links only) */}
-          <nav className="hidden md:flex items-center gap-10 text-base">
-            <a href="#how" className="text-slate-600 hover:text-slate-900">How it works</a>
-            <a href="#buyers" className="text-slate-600 hover:text-slate-900">Buyer Form</a>
-            <a href="#dashboard" className="text-slate-600 hover:text-slate-900">Dashboard</a>
-          </nav>
+        {/* Center: Nav */}
+        <nav aria-label="Primary">
+          <ul className="flex items-center gap-6">
+            <li><NavLink to="/" end>Home</NavLink></li>
+            <li><NavLink to="/pricing">Pricing</NavLink></li>
+            <li><a href="#how">How it works</a></li>
+          </ul>
+        </nav>
 
-          {/* Auth/CTA */}
-          <div className="flex items-center gap-4">
-            <a href="#login" className="hidden sm:inline text-slate-600 hover:text-slate-900">Log in</a>
-            <a href="/signup" className="rounded-full px-5 py-3 text-white shadow-sm bg-gradient-to-r from-[#0E57FF] to-[#14C6F1]">
-              Get Started
-            </a>
-          </div>
+        {/* Right: Actions */}
+        <div className="flex items-center gap-3">
+          {/* Per request, make Login go to the Dashboard */}
+          <NavLink to="/dashboard" className="underline">Log in</NavLink>
+          <a href="#form" className="px-3 py-2 rounded-md bg-black text-white">Get Started</a>
         </div>
       </div>
     </header>
   );
 }
-

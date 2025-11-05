@@ -1,0 +1,50 @@
+﻿import { Link, NavLink } from "react-router-dom";
+
+export default function Navbar() {
+  return (
+    <header className="sticky top-0 z-40 backdrop-blur bg-graphite-950/70 border-b border-graphite-800">
+      <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+        <Link to="/" className="flex items-center gap-3">
+          <img
+            src="/img/horizontal_logo.png""
+            alt="BuyerBoard"
+            className="h-9 w-auto"
+          />
+        </Link>
+
+        <nav className="flex items-center gap-6">
+          <NavLink to="/" className={({isActive}) =>
+            `text-sm ${isActive ? "text-aqua-400" : "text-gray-300 hover:text-white"}`
+          }>
+            Home
+          </NavLink>
+          <NavLink to="/form" className={({isActive}) =>
+            `text-sm ${isActive ? "text-aqua-400" : "text-gray-300 hover:text-white"}`
+          }>
+            Get Leads
+          </NavLink>
+          <a
+            href="#features"
+            className="text-sm text-gray-300 hover:text-white"
+          >
+            Features
+          </a>
+          <a
+            href="#how"
+            className="text-sm text-gray-300 hover:text-white"
+          >
+            How it Works
+          </a>
+
+          <Link
+            to="/form"
+            className="ml-2 inline-flex items-center rounded-2xl px-4 py-2 text-sm font-semibold
+                       bg-cobalt-600 hover:bg-cobalt-500 text-white shadow-md"
+          >
+            Get Started
+          </Link>
+        </nav>
+      </div>
+    </header>
+  );
+}

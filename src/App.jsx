@@ -1,18 +1,30 @@
-﻿import React from "react";
-import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
-import Landing from "./pages/Landing.jsx";
-import Pricing from "./pages/Pricing.jsx";
-import Login from "./pages/Login.jsx";
+﻿import { Routes, Route } from "react-router-dom";
+import Header from "./components/Header";
+import Landing from "./pages/Landing";
+import Pricing from "./pages/Pricing";
+import Login from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
+import { AuthProvider, RequireAuth } from "./lib/auth";
 
-export default function App(){
+export default function App() {
   return (
-    <HashRouter>
-      <Routes>
-        <Route path="/" element={<Landing/>} />
-        <Route path="/pricing" element={<Pricing/>} />
-        <Route path="/login" element={<Login/>} />
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
-    </HashRouter>
+    <AuthProvider>
+      <Header />
+      <main>
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/pricing" element={<Pricing />} />
+          <Route path="/login" element={<Login />} />
+          <Route
+            path="/dashboard"
+            element={
+              <RequireAuth>
+                <Dashboard />
+              </RequireAuth>
+            }
+          />
+        </Routes>
+      </main>
+    </AuthProvider>
   );
 }

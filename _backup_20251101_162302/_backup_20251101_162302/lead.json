@@ -1,9 +1,0 @@
-{
-  "name": "Web Test",
-  "email": "webtest@example.com",
-  "zip": "33067",
-  "price_max": 850000,
-  "beds": 3,
-  "baths": 2,
-  "notes": "smoke via curl"
-}

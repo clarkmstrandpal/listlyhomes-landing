@@ -1,0 +1,20 @@
+﻿:root{
+  --navy:#0D1A2B; --cobalt:#0E57FF; --aqua:#14C6F1; --magenta:#D6248F; --yellow:#FFC133;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family: ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial; color:#0f172a;}
+a{text-decoration:none}
+.container{max-width:1200px;margin:0 auto;padding:0 16px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 16px;border-radius:14px;font-weight:600}
+.btn-primary{background:linear-gradient(90deg,var(--cobalt),var(--aqua));color:#fff}
+.card{background:#fff;border:1px solid #e2e8f0;border-radius:20px;box-shadow:0 8px 28px rgba(2,6,23,.06)}
+.input{width:100%;padding:10px 12px;border:1px solid #cbd5e1;border-radius:12px}
+.row{display:grid;gap:16px}
+.row-2{grid-template-columns:1fr 1fr}
+.header{position:sticky;top:0;background:#fff;border-bottom:1px solid #e2e8f0;z-index:40}
+.header .inner{height:72px;display:flex;align-items:center;justify-content:space-between}
+.nav a{color:#334155;padding:8px;border-radius:10px}
+.nav a:hover{background:#f1f5f9}
+.hero{background:url("/img/hero-bg.jpg") center/cover no-repeat}
+.shadow-soft{box-shadow:0 12px 32px rgba(2,6,23,.10)}
+.small{font-size:12px;color:#64748b}

@@ -1,41 +1,48 @@
-﻿import { useState } from "react";
-import { postJSON } from "../lib/api";
+﻿import React from "react";
+const API_BASE = (import.meta.env?.VITE_API_BASE || "https://2v0q4zm2v6.execute-api.us-east-1.amazonaws.com/dev").replace(/\/$/,"");
 
 export default function LeadForm(){
-  const [form, setForm] = useState({ name:"", email:"", phone:"", zip:"" });
-  const [msg, setMsg] = useState("");
+  const [form,setForm] = React.useState({ role:"buyer", name:"", email:"", phone:"", zip:"", notes:"" });
+  const [msg,setMsg]   = React.useState("");
 
-  const update = (k) => (e) => setForm(s => ({...s, [k]: e.target.value}));
+  const upd = k => e => setForm(s=>({...s,[k]:e.target.value}));
 
   async function onSubmit(e){
     e.preventDefault();
     setMsg("Submitting");
     try{
-      await postJSON("/v1/ingest", {
-        source: "landing",
-        intent: "buy",
-        ...form,
+      const res = await fetch(`${API_BASE}/v1/ingest`, {
+        method:"POST",
+        headers:{ "Content-Type":"application/json" },
+        body: JSON.stringify({ source:"landing", ...form })
       });
+      const data = await res.json().catch(()=> ({}));
+      if(!res.ok) throw new Error(data?.error || "Submit failed");
       setMsg("Thanks! Well be in touch shortly.");
-      setForm({ name:"", email:"", phone:"", zip:"" });
-    }catch(err){
-      setMsg(err?.data?.error || "Submission failed");
-    }
+      setForm({ role:"buyer", name:"", email:"", phone:"", zip:"", notes:"" });
+    }catch(err){ setMsg(err.message || "Error"); }
   }
 
   return (
-    <form id="form" onSubmit={onSubmit} className="bg-white rounded-2xl shadow-xl p-6 space-y-3">
-      <h3 className="text-xl font-semibold">Tell us what youre looking for</h3>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-        <input className="input" placeholder="Name"  value={form.name}  onChange={update("name")} />
-        <input className="input" placeholder="Email" value={form.email} onChange={update("email")} />
-        <input className="input" placeholder="Phone" value={form.phone} onChange={update("phone")} />
-        <input className="input" placeholder="ZIP code" value={form.zip} onChange={update("zip")} />
+    <form id="buyers" onSubmit={onSubmit} className="card" style={{padding:16}}>
+      <div className="grid grid-2">
+        <select className="input" value={form.role} onChange={upd("role")}>
+          <option value="buyer">Buyer</option>
+          <option value="seller">Seller</option>
+          <option value="renter">Renter</option>
+          <option value="landlord">Landlord</option>
+          <option value="other">Other</option>
+        </select>
+        <input className="input" placeholder="Full name" value={form.name} onChange={upd("name")} />
+        <input className="input" placeholder="Email" value={form.email} onChange={upd("email")} />
+        <input className="input" placeholder="Phone" value={form.phone} onChange={upd("phone")} />
+        <input className="input" placeholder="ZIP" value={form.zip} onChange={upd("zip")} />
+        <textarea className="input" rows={4} placeholder="Neighborhoods, timing, pre-approval, must-haves" value={form.notes} onChange={upd("notes")} />
       </div>
-      <button className="w-full h-11 rounded-xl bg-gradient-to-r from-[#0E57FF] to-[#14C6F1] text-white font-semibold">
-        Get matched to an agent
-      </button>
-      {msg && <div className="text-sm text-slate-700">{msg}</div>}
+      <div style={{marginTop:10,display:"flex",alignItems:"center",gap:10}}>
+        <button className="btn btn-primary" type="submit">Submit</button>
+        <span className="small">{msg}</span>
+      </div>
     </form>
   );
 }
