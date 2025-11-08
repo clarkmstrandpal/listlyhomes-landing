@@ -81,8 +81,11 @@ export default function Landing(){
           </div>
           <div>
             <div className="h-[360px] rounded-3xl border border-slate-200 shadow-soft bg-white flex items-center justify-center">
-              {/* drop your hero image into /public/img/hero-main.svg */}
-              <img src="/img/hero-main.svg" alt="" className="w-[85%] h-[85%] object-contain" onError={e=>e.currentTarget.style.display="none"} />
+              <img
+                src="/img/hero-bg.jpg"
+                alt="Listly Homes"
+                className="w-full h-auto rounded-2xl shadow-lg object-cover"
+              />
             </div>
           </div>
         </div>
