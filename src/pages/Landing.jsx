@@ -1,5 +1,5 @@
-﻿import React from "react";
-import Header from "../components/Header.jsx";
+import React from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import LeadForm from "../components/LeadForm.jsx";
 
 const features = [
@@ -64,10 +64,37 @@ function Marquee({ items, render, height=120, speed=35, ariaLabel }) {
 }
 
 export default function Landing(){
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const scrollToId = React.useCallback((targetId) => {
+    if(!targetId){ return; }
+    const el = document.getElementById(targetId);
+    if(el){
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, []);
+
+  const onLocalAnchorClick = React.useCallback((event) => {
+    event.preventDefault();
+    const hash = event.currentTarget.getAttribute("href");
+    if(!hash){ return; }
+    const targetId = hash.replace(/^#/, "");
+    scrollToId(targetId);
+  }, [scrollToId]);
+
+  React.useEffect(()=>{
+    if(location.state?.scrollTo){
+      const targetId = location.state.scrollTo;
+      requestAnimationFrame(() => scrollToId(targetId));
+      navigate(location.pathname, { replace: true, state: {} });
+    }
+  }, [location, navigate, scrollToId]);
+
   return (
     <div className="bg-white">
       {/* HERO */}
-      <section className="relative">
+      <section id="top" className="relative">
         <div className="mx-auto max-w-6xl px-4 pt-16 pb-6 grid lg:grid-cols-2 items-center gap-10">
           <div>
             <h1 className="text-[2.1rem] md:text-5xl font-extrabold leading-tight text-slate-900">
@@ -75,8 +102,8 @@ export default function Landing(){
             </h1>
             <p className="text-gray-600 mt-4">We scan public sources for shopping intent and route by ZIP, budget and criteria.</p>
             <div className="mt-7 flex gap-3">
-              <a href="#/pricing" className="btn-primary">Start Receiving Leads</a>
-              <a href="#/how" className="btn-outline">How it works</a>
+              <Link to="/pricing" className="btn-primary">Start Receiving Leads</Link>
+              <a href="#how" className="btn-outline" onClick={onLocalAnchorClick}>How it works</a>
             </div>
           </div>
           <div>
@@ -92,14 +119,14 @@ export default function Landing(){
       </section>
 
       {/* FEATURES (cards) */}
-      <section className="bg-gradient-to-b from-white to-blue-50/40">
+      <section id="how" className="bg-gradient-to-b from-white to-blue-50/40">
         <div className="mx-auto max-w-6xl px-4 py-12 grid gap-6 md:grid-cols-3">
           {features.map((m,i)=> <Metric key={i} m={m} />)}
         </div>
       </section>
 
       {/* TESTIMONIALS (more important than posts) */}
-      <section className="mx-auto max-w-6xl px-4 py-10">
+      <section id="testimonials" className="mx-auto max-w-6xl px-4 py-10">
         <h2 className="text-2xl md:text-3xl font-bold mb-4">Agents whove closed from Listly leads</h2>
         <Marquee
           items={testi}
@@ -115,20 +142,20 @@ export default function Landing(){
       </section>
 
       {/* FORM */}
-      <section id="buyers" className="bg-white">
+      <section id="form" className="bg-white">
         <div className="mx-auto max-w-6xl px-4 py-12">
           <h2 className="text-2xl md:text-3xl font-bold text-center">Looking for a home? Tell us what you want.</h2>
           <div className="mt-8 card shadow-soft p-6 rounded-2xl">
             <LeadForm />
           </div>
           <div className="text-center mt-6">
-            <a href="#/pricing" className="btn-primary">Get Started</a>
+            <Link to="/pricing" className="btn-primary">Get Started</Link>
           </div>
         </div>
       </section>
 
       {/* REAL POSTS  REAL BUYERS (marquee) */}
-      <section className="mx-auto max-w-6xl px-4 pb-16">
+      <section id="buyers" className="mx-auto max-w-6xl px-4 pb-16">
         <div className="mb-3 flex items-center justify-between px-1">
           <h3 className="text-sm font-semibold text-gray-700">Real posts  real buyers</h3>
           <span className="text-xs text-gray-500">Auto-scroll  hover to pause</span>
@@ -150,15 +177,15 @@ export default function Landing(){
       </section>
 
       {/* PRICING PREVIEW (last) */}
-      <section className="bg-brand-gradient">
+      <section id="pricing-preview" className="bg-brand-gradient">
         <div className="mx-auto max-w-6xl px-4 py-10 text-white flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="text-center md:text-left">
             <div className="text-xl font-semibold">Ready to meet real buyers?</div>
             <div className="text-white/90">Spin up filters and start matching today.</div>
           </div>
-          <a href="#/pricing" className="inline-flex items-center px-5 py-3 rounded-xl bg-white text-blue-700 font-semibold hover:bg-blue-50">
+          <Link to="/pricing" className="inline-flex items-center px-5 py-3 rounded-xl bg-white text-blue-700 font-semibold hover:bg-blue-50">
             View Packages
-          </a>
+          </Link>
         </div>
       </section>
 
@@ -168,4 +195,3 @@ export default function Landing(){
     </div>
   );
 }
-
