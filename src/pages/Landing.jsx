@@ -1,6 +1,7 @@
-﻿import React from "react";
-import Header from "../components/Header.jsx";
+import React from "react";
+import { Link } from "react-router-dom";
 import LeadForm from "../components/LeadForm.jsx";
+import Timeline from "../components/Timeline.jsx";
 
 const features = [
   { metric:"10K+", caption:"Active buyer posts tracked", title:"Verified & Local", text:"Every lead is tied to your market and checked for real intent." },
@@ -37,7 +38,7 @@ function Metric({ m }) {
   );
 }
 
-function Marquee({ items, render, height=120, speed=35, ariaLabel }) {
+function Marquee({ items, render, height=120, ariaLabel }) {
   const ref = React.useRef(null);
   React.useEffect(()=>{
     const el = ref.current;
@@ -75,8 +76,8 @@ export default function Landing(){
             </h1>
             <p className="text-gray-600 mt-4">We scan public sources for shopping intent and route by ZIP, budget and criteria.</p>
             <div className="mt-7 flex gap-3">
-              <a href="#/pricing" className="btn-primary">Start Receiving Leads</a>
-              <a href="#/how" className="btn-outline">How it works</a>
+              <Link to="/pricing" className="btn-primary">Start Receiving Leads</Link>
+              <Link to={{ pathname: "/", hash: "#how" }} className="btn-outline">How it works</Link>
             </div>
           </div>
           <div>
@@ -95,6 +96,8 @@ export default function Landing(){
         </div>
       </section>
 
+      <Timeline />
+
       {/* TESTIMONIALS (more important than posts) */}
       <section className="mx-auto max-w-6xl px-4 py-10">
         <h2 className="text-2xl md:text-3xl font-bold mb-4">Agents whove closed from Listly leads</h2>
@@ -112,14 +115,14 @@ export default function Landing(){
       </section>
 
       {/* FORM */}
-      <section id="buyers" className="bg-white">
+      <section id="form" className="bg-white">
         <div className="mx-auto max-w-6xl px-4 py-12">
           <h2 className="text-2xl md:text-3xl font-bold text-center">Looking for a home? Tell us what you want.</h2>
           <div className="mt-8 card shadow-soft p-6 rounded-2xl">
             <LeadForm />
           </div>
           <div className="text-center mt-6">
-            <a href="#/pricing" className="btn-primary">Get Started</a>
+            <Link to="/pricing" className="btn-primary">Get Started</Link>
           </div>
         </div>
       </section>
@@ -153,9 +156,9 @@ export default function Landing(){
             <div className="text-xl font-semibold">Ready to meet real buyers?</div>
             <div className="text-white/90">Spin up filters and start matching today.</div>
           </div>
-          <a href="#/pricing" className="inline-flex items-center px-5 py-3 rounded-xl bg-white text-blue-700 font-semibold hover:bg-blue-50">
+          <Link to="/pricing" className="inline-flex items-center px-5 py-3 rounded-xl bg-white text-blue-700 font-semibold hover:bg-blue-50">
             View Packages
-          </a>
+          </Link>
         </div>
       </section>
 
@@ -165,4 +168,3 @@ export default function Landing(){
     </div>
   );
 }
-
