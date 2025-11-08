@@ -1,17 +1,40 @@
-﻿import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../lib/auth";
+
+const sectionLinks = [
+  { label: "How it works", target: "how" },
+  { label: "Testimonials", target: "testimonials" },
+  { label: "Lead form", target: "form" },
+];
 
 export default function Header(){
   const { token, user, logout } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
 
   function onDashboard(){
     if(token){ navigate("/dashboard"); }
     else{ navigate("/login"); }
   }
 
+  function scrollToId(target){
+    const el = document.getElementById(target);
+    if(el){
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }
+
+  function onAnchorClick(event, target){
+    event.preventDefault();
+    if(location.pathname !== "/"){
+      navigate("/", { state: { scrollTo: target } });
+      return;
+    }
+    scrollToId(target);
+  }
+
   return (
-    <header style={{position:"sticky", top:0, zIndex:30, background:"#fff", borderBottom:"1px solid #eef1f4"}}>
+    <header className="header" style={{position:"sticky", top:0, zIndex:30, background:"#fff", borderBottom:"1px solid #eef1f4"}}>
       <div style={{maxWidth:1200, margin:"0 auto", padding:"10px 16px", display:"flex", alignItems:"center", gap:16}}>
         <Link to="/" style={{display:"inline-flex", alignItems:"center", gap:10, textDecoration:"none"}}>
           <img src="/img/horzontal_logo.png" alt="Listly Homes" style={{height:36, width:"auto"}} />
@@ -19,8 +42,17 @@ export default function Header(){
         </Link>
 
         <nav style={{marginLeft:24, display:"flex", gap:18, alignItems:"center"}}>
-          <NavLink to="/" style={({isActive})=>({color:isActive?"#0E57FF":"#2F3A44", textDecoration:"none"})}>Home</NavLink>
-          <NavLink to="/pricing" style={({isActive})=>({color:isActive?"#0E57FF":"#2F3A44", textDecoration:"none"})}>Pricing</NavLink>
+          {sectionLinks.map(({ label, target }) => (
+            <a
+              key={target}
+              href={`#${target}`}
+              onClick={(event) => onAnchorClick(event, target)}
+              style={{color:"#2F3A44", textDecoration:"none"}}
+            >
+              {label}
+            </a>
+          ))}
+          <Link to="/pricing" style={{color:"#2F3A44", textDecoration:"none"}}>Pricing</Link>
           <button onClick={onDashboard} style={{border:"1px solid #e5e7eb", padding:"6px 10px", borderRadius:10, background:"#fff", cursor:"pointer"}}>Dashboard</button>
         </nav>
 
