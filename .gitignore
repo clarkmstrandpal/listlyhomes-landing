@@ -17,3 +17,12 @@ Thumbs.db
 
 # don't commit build caches
 .sass-cache/
+
+# PAL added backup ignores
+node_modules/
+dist/
+backups/
+backup_*/
+backup_src_*/
+src.emergency_*/
+*.zip
