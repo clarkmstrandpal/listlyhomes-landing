@@ -166,3 +166,10 @@ header img {
   object-fit: cover;
   display: block;
 }
+
+.hero-right {
+  background-image: url('/img/hero-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
