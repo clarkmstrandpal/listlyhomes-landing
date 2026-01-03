@@ -1,4 +1,4 @@
-﻿// src/lib/api.js
+// src/lib/api.js
 // Unified API helpers for BuyersBoard
 const FALLBACK_API = "https://2v0q4zm2v6.execute-api.us-east-1.amazonaws.com/dev";
 

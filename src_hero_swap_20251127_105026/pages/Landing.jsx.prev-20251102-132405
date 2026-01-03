@@ -1,0 +1,95 @@
+﻿import React from "react";
+import Header from "../components/Header.jsx";
+import LeadForm from "../components/LeadForm.jsx";
+
+function Metric({num,label,title,text}){
+  return (
+    <div className="card accent" style={{padding:"1rem"}}>
+      <div style={{textAlign:"center"}}>
+        <div style={{fontWeight:800, fontSize:"1.5rem"}}>{num}</div>
+        <div className="small">{label}</div>
+      </div>
+      <div style={{height:"1px", background:"#e5e7eb", margin:"10px 0"}} />
+      <div style={{fontWeight:600}}>{title}</div>
+      <div className="small">{text}</div>
+    </div>
+  );
+}
+
+export default function Landing(){
+  return (
+    <div className="bg-white">
+      <Header />
+
+      {/* HERO */}
+      <section className="mx-auto max-w-6xl px-4" style={{paddingTop:"2rem"}}>
+        <div className="grid md:grid-cols-2 gap-8 items-center">
+          <div>
+            <h1 style={{fontWeight:800, lineHeight:1.1, fontSize:"2.2rem"}}>Here to help you find <span style={{color:"#0E57FF"}}>real buyers</span> in your market.</h1>
+            <p className="small" style={{marginTop:"10px"}}>
+              We scan public sources for shopping intent and route by ZIP, budget and criteria.
+            </p>
+            <div style={{marginTop:"14px", display:"flex", gap:"10px"}}>
+              <a href="#pricing" className="btn-primary">Start Receiving Leads</a>
+              <a href="#how" className="btn-ghost">How it works</a>
+            </div>
+          </div>
+          <div>
+            <img src="/img/hero_photo.svg" alt="" className="hero-img"
+                 onError={(e)=>{ e.currentTarget.src="/img/hero_keys.svg"; }}/>
+          </div>
+        </div>
+      </section>
+
+      {/* METRICS */}
+      <section className="mx-auto max-w-6xl px-4" style={{marginTop:"18px"}}>
+        <div className="grid md:grid-cols-3 gap-5">
+          <Metric num="10K+" label="Active buyer posts tracked" title="Verified & Local" text="Every lead is tied to your market and checked for real intent."/>
+          <Metric num="4K+"  label="Monthly agent matches"      title="Reply-Ready"      text="We score for 'ready to talk' and push to your CRM or inbox."/>
+          <Metric num="30+"  label="Markets live today"         title="Youre in Control" text="Set filters, pause anytime. Only pay for leads you want."/>
+        </div>
+      </section>
+
+      {/* QUOTES */}
+      <section className="mx-auto max-w-6xl px-4" style={{marginTop:"14px"}}>
+        <div className="grid md:grid-cols-2 gap-4">
+          <div className="card" style="border-radius:999px;padding:.8rem 1rem;text-align:center;">Two listing appointments in 48 hours. <b>Katie C.</b></div>
+          <div className="card" style="border-radius:999px;padding:.8rem 1rem;text-align:center;">Better ROI than my ad spend last month. <b>Andrew R.</b></div>
+        </div>
+      </section>
+
+      {/* HOW IT WORKS (fanned cards) */}
+      <section id="how" className="mx-auto max-w-6xl px-4" style={{marginTop:"26px"}}>
+        <h2 style={{fontSize:"1.5rem", fontWeight:800, marginBottom:"8px"}}>How it works</h2>
+        <div className="fan">
+          <div className="card c1"><div style="padding:1rem;font-weight:600">1) We watch real communities for buyer/seller intent.</div></div>
+          <div className="card c2"><div style="padding:1rem;font-weight:600">2) We score, de-dupe, and ZIP-route to vetted agents.</div></div>
+          <div className="card c3"><div style="padding:1rem;font-weight:600">3) Phase 2: even more untapped sources + AI enrich.</div></div>
+          <img src="/img/reddit.svg" className="badge" alt="" onError={(e)=>e.currentTarget.remove()} />
+        </div>
+      </section>
+
+      {/* FORM */}
+      <section className="mx-auto max-w-6xl px-4" style={{marginTop:"26px"}}>
+        <h2 style={{fontSize:"1.25rem", fontWeight:800, margin:"0 0 8px"}}>Looking for a home? Tell us what you want.</h2>
+        <LeadForm />
+      </section>
+
+      {/* PRICING (anchor only for now) */}
+      <section id="pricing" className="mx-auto max-w-6xl px-4" style={{margin:"26px auto 40px"}}>
+        <div className="card" style={{padding:"1rem"}}>
+          <div style={{fontWeight:800, marginBottom:"6px"}}>Packages</div>
+          <ul className="small" style={{marginLeft:"1rem", listStyle:"disc"}}>
+            <li><b>$50 / ZIP</b>  shared leads in selected ZIPs.</li>
+            <li><b>Exclusive ZIP</b>  starts at $1,000/ZIP (volume-based). Contact us for availability.</li>
+            <li><b>Custom</b>  tailored bundle for teams/brokers.</li>
+          </ul>
+        </div>
+      </section>
+
+      <footer className="small" style={{textAlign:"center", padding:"18px 0", color:"#64748b"}}>
+         {new Date().getFullYear()} Listly Homes. All rights reserved.
+      </footer>
+    </div>
+  );
+}

@@ -99,12 +99,3 @@ export async function reopenLead(lead_id){
     throw e;
   }
 }
-
-export async function getJSONAuth(path, init={}) {
-  return getJSON(path, { ...(init||{}), headers: authHeaders(init.headers||{}) });
-}
-export async function postJSONAuth(path, body, init={}) {
-  const headers = authHeaders({ "Content-Type":"application/json", ...(init.headers||{}) });
-  return postJSON(path, body, { ...(init||{}), headers });
-}
-export async function me(){ return getJSONAuth("/v1/agents/me"); }

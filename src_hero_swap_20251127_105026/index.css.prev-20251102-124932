@@ -1,0 +1,37 @@
+﻿/* === Listly Homes brand (plain CSS) === */
+:root{
+  --navy:#0D1A2B; --cobalt:#0E57FF; --aqua:#14C6F1; --magenta:#D6248F; --yellow:#FFC133; --graphite:#2F3A44; --softgray:#8D98A3;
+}
+.card{ background:#fff; border:1px solid #e5e7eb; border-radius:1.25rem; box-shadow:0 8px 28px rgba(2,6,23,.06); position:relative; }
+.card.accent::before{ content:""; position:absolute; left:0; top:0; width:100%; height:4px; border-top-left-radius:1.25rem; border-top-right-radius:1.25rem; background:linear-gradient(90deg,var(--cobalt),var(--aqua)); }
+.btn-primary{ display:inline-flex; align-items:center; justify-content:center; padding:.75rem 1.25rem; border-radius:1rem; color:#fff; text-decoration:none; background:linear-gradient(90deg,var(--cobalt),var(--aqua)); box-shadow:0 10px 24px rgba(14,87,255,.18); }
+.btn-ghost{ display:inline-flex; align-items:center; justify-content:center; padding:.75rem 1.25rem; border-radius:1rem; border:1px solid #e5e7eb; background:#fff; color:#1f2937; text-decoration:none; }
+.input{ width:100%; border:1px solid #e5e7eb; border-radius:.75rem; padding:.6rem .85rem; outline:none; }
+.input:focus{ border-color:#c8d3ff; box-shadow:0 0 0 4px rgba(14,87,255,.15); }
+.fan{ position:relative; height:220px; }
+.fan .card{ width:260px; height:160px; position:absolute; top:20px; left:50%; transform:translateX(-50%); }
+.fan .c1{ transform:translateX(-50%) rotate(-8deg); z-index:1 }
+.fan .c2{ transform:translateX(-50%) rotate(0deg);  z-index:2 }
+.fan .c3{ transform:translateX(-50%) rotate(8deg);  z-index:1 }
+.hero-img{ width:100%; height:320px; object-fit:cover; border-radius:1.25rem; border:1px solid #e5e7eb; }
+.badge{ height:24px; width:24px; border-radius:999px; box-shadow:0 0 0 4px #fff; position:absolute; right:-10px; top:-10px; }
+.small{ font-size:.875rem; color:#475569; }
+
+/* === Listly Homes brand + utilities (append-safe) === */
+:root{
+  --navy:#0D1A2B; --cobalt:#0E57FF; --aqua:#14C6F1; --magenta:#D6248F; --yellow:#FFC133; --graphite:#2F3A44; --softgray:#8D98A3;
+}
+.card{ background:#fff; border:1px solid #e5e7eb; border-radius:1.25rem; box-shadow:0 8px 28px rgba(2,6,23,.06); position:relative; }
+.card.accent::before{ content:""; position:absolute; left:0; top:0; width:100%; height:4px; border-top-left-radius:1.25rem; border-top-right-radius:1.25rem; background:linear-gradient(90deg,var(--cobalt),var(--aqua)); }
+.btn-primary{ display:inline-flex; align-items:center; justify-content:center; padding:.75rem 1.25rem; border-radius:1rem; color:#fff; text-decoration:none; background:linear-gradient(90deg,var(--cobalt),var(--aqua)); box-shadow:0 10px 24px rgba(14,87,255,.18); }
+.btn-ghost{ display:inline-flex; align-items:center; justify-content:center; padding:.75rem 1.25rem; border-radius:1rem; border:1px solid #e5e7eb; background:#fff; color:#1f2937; text-decoration:none; }
+.input{ width:100%; border:1px solid #e5e7eb; border-radius:.75rem; padding:.6rem .85rem; outline:none; }
+.input:focus{ border-color:#c8d3ff; box-shadow:0 0 0 4px rgba(14,87,255,.15); }
+.hero-img{ width:100%; height:320px; object-fit:cover; border-radius:1.25rem; border:1px solid #e5e7eb; }
+.fan{ position:relative; height:220px; }
+.fan .card{ width:260px; height:160px; position:absolute; top:20px; left:50%; transform:translateX(-50%); }
+.fan .c1{ transform:translateX(-50%) rotate(-8deg); z-index:1 }
+.fan .c2{ transform:translateX(-50%) rotate(0deg);  z-index:2 }
+.fan .c3{ transform:translateX(-50%) rotate(8deg);  z-index:1 }
+.badge{ height:24px; width:24px; border-radius:999px; box-shadow:0 0 0 4px #fff; position:absolute; right:-10px; top:-10px; }
+.small{ font-size:.875rem; color:#475569; }

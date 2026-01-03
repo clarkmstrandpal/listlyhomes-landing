@@ -1,4 +1,4 @@
-﻿// src/lib/summary.js
+// src/lib/summary.js
 import { API_BASE } from "./api"; // re-use base
 
 export async function fetchLeadsSummary(params = {}) {

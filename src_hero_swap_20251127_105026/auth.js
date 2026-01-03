@@ -1,4 +1,4 @@
-﻿// Simple localStorage-based mock auth.
+// Simple localStorage-based mock auth.
 // Swap this for your real auth later.
 export const auth = {
   isLoggedIn: () => localStorage.getItem("bb_auth") === "1",

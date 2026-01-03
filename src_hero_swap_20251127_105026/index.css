@@ -1,0 +1,175 @@
+﻿@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* --- BuyerBoard helpers (keep) --- */
+:root { --primary:#0E57FF; }
+.card { @apply bg-white border border-slate-200 rounded-2xl; }
+.shadow-soft { box-shadow: 0 8px 28px rgba(2,6,23,0.06); }
+.bg-brand-gradient { @apply bg-gradient-to-r from-[#0E57FF] to-[#14C6F1]; }
+.btn-primary { @apply inline-flex items-center px-5 py-3 rounded-xl text-white bg-[#0E57FF] hover:bg-[#0d4be0] transition; }
+/* ===== Listly Homes Palette (light)  additive, do not remove existing ===== */
+:root{
+  --lh-navy:#0D1A2B;         /* Midnight Navy (type)   */
+  --lh-cobalt:#0E57FF;       /* Cobalt Blue            */
+  --lh-aqua:#14C6F1;         /* Aqua/Cyan              */
+  --lh-magenta:#D6248F;      /* Magenta                */
+  --lh-yellow:#FFC133;       /* Golden Yellow          */
+  --lh-graphite:#2F3A44;     /* Neutral Graphite       */
+  --lh-gray:#8D98A3;         /* Soft Gray              */
+
+  /* gradients */
+  --lh-grad-core: linear-gradient(90deg,#0E57FF 0%,#14C6F1 100%);     /* Blue core    */
+  --lh-grad-face: linear-gradient(90deg,#D6248F 0%,#FFC133 100%);     /* MagentaYel */
+  --lh-grad-word: linear-gradient(90deg,#0D1A2B 0%,#6B37FF 50%,#D6248F 100%);
+}
+
+/* Utilities (non-destructive) */
+.text-accent{ background:var(--lh-grad-word); -webkit-background-clip:text; background-clip:text; color:transparent; }
+.btn-primary{
+  display:inline-flex; align-items:center; justify-content:center;
+  padding:.65rem 1.05rem; border-radius:12px; font-weight:600; color:#fff;
+  background:var(--lh-grad-core); box-shadow:0 8px 28px rgba(2,6,23,.08);
+}
+.btn-primary:hover{ filter:saturate(1.05) brightness(1.02); }
+.btn-outline{
+  display:inline-flex; align-items:center; justify-content:center;
+  padding:.6rem 1rem; border-radius:12px; border:1px solid #e5e7eb; color:#1f2937; background:#fff;
+}
+.link-primary{ color:var(--lh-cobalt); }
+.card{ border-color:#e6e8eb; }
+.shadow-soft{ box-shadow:0 10px 30px rgba(13,26,43,.08); }
+.badge{ display:inline-flex; align-items:center; gap:.5rem; font-weight:600; color:#0f172a; }
+.metric-num{ font-weight:800; color:#0f172a; }
+.metric-cap{ color:#64748b; font-size:.9rem; }
+/* ===== Listly Homes palette/utility (additive) ===== */
+:root{
+  --lh-navy:#0D1A2B; --lh-cobalt:#0E57FF; --lh-aqua:#14C6F1;
+  --lh-magenta:#D6248F; --lh-yellow:#FFC133; --lh-graphite:#2F3A44; --lh-gray:#8D98A3;
+  --lh-grad-core: linear-gradient(90deg,#0E57FF 0%,#14C6F1 100%);
+  --lh-grad-face: linear-gradient(90deg,#D6248F 0%,#FFC133 100%);
+  --lh-grad-word: linear-gradient(90deg,#0D1A2B 0%,#6B37FF 50%,#D6248F 100%);
+}
+.text-accent{ background:var(--lh-grad-word); -webkit-background-clip:text; background-clip:text; color:transparent; }
+.btn-primary{ display:inline-flex; align-items:center; justify-content:center; padding:.65rem 1.05rem; border-radius:12px; font-weight:600; color:#fff; background:var(--lh-grad-core); box-shadow:0 8px 28px rgba(2,6,23,.08); }
+.btn-primary:hover{ filter:saturate(1.05) brightness(1.02); }
+.btn-outline{ display:inline-flex; align-items:center; justify-content:center; padding:.6rem 1rem; border-radius:12px; border:1px solid #e5e7eb; color:#1f2937; background:#fff; }
+.card{ background:#fff; border:1px solid #e5e7eb; border-radius:1.25rem; }
+.shadow-soft{ box-shadow:0 10px 30px rgba(13,26,43,.08); }
+.no-scrollbar::-webkit-scrollbar{ display:none } .no-scrollbar{ -ms-overflow-style:none; scrollbar-width:none }
+
+/* --- Layout/container & header banner --- */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+@media (min-width: 1280px){ .container{ max-width: 1200px; padding: 0 24px; } }
+
+.site-header { position: sticky; top: 0; z-index: 40; background: rgba(255,255,255,.95); backdrop-filter: blur(6px); border-bottom: 1px solid #e5e7eb; }
+.header-row { display:flex; align-items:center; justify-content:space-between; height:72px; }
+
+.brand { display:flex; align-items:center; gap:10px; text-decoration:none; }
+.brand-logo { height:56px; width:auto; object-fit:contain; }
+@media (min-width: 1024px){ .brand-logo{ height:64px; } }
+
+.nav { display:none; gap:24px; align-items:center; font-size:14px; color:#475569; }
+.nav a { color:#475569; text-decoration:none; }
+.nav a:hover { color:#0e57ff; }
+@media (min-width: 900px){ .nav{ display:flex; } }
+
+.nav-cta { display:flex; align-items:center; gap:12px; }
+
+.btn-primary { display:inline-flex; align-items:center; justify-content:center; padding:.6rem 1rem; border-radius:12px; font-weight:600; color:#fff; background: linear-gradient(90deg,#0E57FF 0%, #14C6F1 100%); box-shadow:0 8px 24px rgba(13,26,43,.12); }
+.btn-primary:hover { filter: saturate(1.05) brightness(1.02); }
+
+/* ===== HEADER POLISH v1 (safe CSS only) ===== */
+.header{position:sticky;top:0;z-index:40;background:#ffffffee;border-bottom:1px solid #e5e7eb;backdrop-filter:saturate(1.1) blur(2px)}
+.header .row{height:84px;gap:20px}
+.header .logo{height:84px}
+@media (max-width:900px){ .header .row{height:72px} .header .logo{height:68px} }
+.nav{display:flex;align-items:center;gap:18px}
+.nav a{color:#334155;text-decoration:none;padding:8px 10px;border-radius:10px}
+.nav a:hover{background:#f1f5f9}
+.btn.btn-primary{padding:10px 16px;border:none;border-radius:12px}
+.header.scrolled{box-shadow:0 10px 28px rgba(2,6,23,.08)}
+/* ===== /HEADER POLISH v1 ===== */
+
+
+/* ===== HEADER POLISH v2 (safe CSS only) ===== */
+html{scroll-behavior:smooth}
+[id]{scroll-margin-top:90px} /* make #how/#form stop below sticky header */
+.nav a{transition:background .15s ease, color .15s ease, text-decoration-color .15s ease}
+.nav a:hover{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}
+.nav a:focus-visible{outline:2px solid #94a3b8; outline-offset:2px; border-radius:10px}
+/* tighter spacing on small screens */
+@media (max-width:820px){ .nav{gap:12px} .nav a{padding:6px 8px} }
+/* ===== /HEADER POLISH v2 ===== */
+
+
+/* === HEADER LAYOUT FIX: 3-column grid (logo | nav | CTAs) === */
+.header .row{display:grid;grid-template-columns:auto 1fr auto;align-items:center;column-gap:20px;height:84px}
+.header .nav{display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
+@media (max-width:900px){
+  .header .row{grid-template-columns:auto 1fr auto;height:72px}
+  .header .nav{gap:12px}
+}
+
+/* === Larger logo (responsive) === */
+.header .logo{height:110px}
+.header .row{height:100px}
+@media (max-width:1200px){
+  .header .logo{height:96px}
+  .header .row{height:92px}
+}
+@media (max-width:900px){
+  .header .logo{height:72px}
+  .header .row{height:72px}
+}
+/* keep hero from feeling cramped when header grows */
+.hero{padding-top:56px}
+/* === Logo sizing (safe, responsive) === */
+header img {
+  display: block;
+  height: auto;
+  max-height: 56px;         /* mobile */
+}
+
+@media (min-width: 768px) {
+  header img { max-height: 72px; }  /* tablet */
+}
+
+@media (min-width: 1024px) {
+  header img { max-height: 84px; }  /* desktop */
+}
+.hero-media {
+  width: 100%;
+  height: 100%;
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.18);
+}
+
+.hero-media-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.hero-media {
+  width: 100%;
+  height: 100%;
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.18);
+}
+
+.hero-media-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.hero-right {
+  background-image: url('/img/hero-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}

@@ -1,4 +1,4 @@
-﻿// src/hooks/useUrlState.js
+// src/hooks/useUrlState.js
 import { useCallback, useEffect, useRef, useState } from "react";
 
 /**

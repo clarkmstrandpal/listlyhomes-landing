@@ -1,4 +1,4 @@
-﻿// src/lib/sign.js
+// src/lib/sign.js
 export async function signBody(bodyString, secret) {
   const enc = new TextEncoder();
   const key = await crypto.subtle.importKey(
