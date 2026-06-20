@@ -26,3 +26,33 @@ backup_*/
 backup_src_*/
 src.emergency_*/
 *.zip
+
+# Local backup / recovery files
+*.bak
+*.bak*
+*.broken_*
+src_hero_swap_*
+_archive/
+_manifests/
+
+# Local debug/export JSON
+expr.json
+key*.json
+names.json
+vals.json
+live_*.json
+router-*.json
+cf-*.json
+gsi.json
+lead.json
+leads-read.json
+sendlog-write.json
+ses-dns.json
+env-preview.json
+errors.json
+site-config.json
+
+# Local generated folders
+.aws-sam/
+router_code/
+tools/

@@ -18,8 +18,7 @@ export function AuthProvider({ children }){
       if(!token){ setUser(null); setLoading(false); return; }
       setLoading(true);
       try{
-        const me = await getJSON(`${API_BASE}/v1/agents/me`, { headers: { Authorization: `Bearer ${token}` } });
-        if(!cancel) setUser(me);
+        const email = (typeof window !== "undefined" ? (localStorage.getItem("bb_agent_email") || localStorage.getItem("agent_email") || "") : ""); if(!cancel) setUser(email ? { email } : null);
       }catch(e){
         // Only clear token on explicit 401; keep token on transient/network issues
         const status = (e && e.status) || (typeof e.message === "string" && /\[401\]/.test(e.message) ? 401 : 0);
@@ -71,3 +70,4 @@ export function RequireAuth({ children }){
   if(!token) return <Navigate to="/login" replace />;
   return children;
 }
+

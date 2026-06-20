@@ -35,7 +35,11 @@ export default function Login(){
         <label className="flex flex-col gap-1">
           <span>Password</span>
           <input type="password" value={password} onChange={e=>setPassword(e.target.value)} required className="border px-3 py-2 rounded" autoComplete="current-password" />
-        </label>
+        
+<div style={{ marginTop: 6, textAlign: "right" }}>
+  <a href="#/reset">Forgot password?</a>
+</div>
+</label>
         {ok && <p className="text-green-700 text-sm border border-green-300 rounded p-2">{ok}</p>}
         {err && <p className="text-red-700 text-sm border border-red-300 rounded p-2">Error: {err}</p>}
         <button disabled={busy} className="px-3 py-2 rounded bg-black text-white w-full">
@@ -45,3 +49,4 @@ export default function Login(){
     </section>
   );
 }
+
