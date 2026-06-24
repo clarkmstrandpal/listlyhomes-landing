@@ -1,1 +1,49 @@
-﻿
+﻿name: Deploy Frontend
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+env:
+  AWS_REGION: us-east-1
+  S3_BUCKET: buyerboard-public-457532147
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ vars.AWS_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Deploy static assets with long cache
+        run: |
+          aws s3 sync dist/ s3://${{ env.S3_BUCKET }}/ --delete --exclude "index.html" --cache-control "public, max-age=31536000, immutable"
+
+      - name: Deploy index.html with no cache
+        run: |
+          aws s3 cp dist/index.html s3://${{ env.S3_BUCKET }}/index.html --cache-control "no-store, no-cache, must-revalidate" --content-type "text/html"
