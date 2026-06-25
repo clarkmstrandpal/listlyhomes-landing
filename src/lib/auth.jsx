@@ -45,8 +45,7 @@ export function AuthProvider({ children }){
     try { localStorage.setItem("bb_token", res.token); } catch {}
     setToken(res.token);
     if(res.agent) setUser(res.agent);
-    // HashRouter-safe redirect
-    window.location.hash = "#/dashboard";
+    navigate("/dashboard", { replace: true });
   }
 
   function logout(){
