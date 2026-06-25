@@ -1,4 +1,4 @@
-﻿import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../lib/auth";
 
 export default function Header(){
@@ -21,6 +21,9 @@ export default function Header(){
         <nav style={{marginLeft:24, display:"flex", gap:18, alignItems:"center"}}>
           <NavLink to="/" style={({isActive})=>({color:isActive?"#0E57FF":"#2F3A44", textDecoration:"none"})}>Home</NavLink>
           <NavLink to="/pricing" style={({isActive})=>({color:isActive?"#0E57FF":"#2F3A44", textDecoration:"none"})}>Pricing</NavLink>
+          {token ? (
+            <NavLink to="/discovery" style={({isActive})=>({color:isActive?"#0E57FF":"#2F3A44", textDecoration:"none"})}>Discovery</NavLink>
+          ) : null}
           <button onClick={onDashboard} style={{border:"1px solid #e5e7eb", padding:"6px 10px", borderRadius:10, background:"#fff", cursor:"pointer"}}>Dashboard</button>
         </nav>
 
