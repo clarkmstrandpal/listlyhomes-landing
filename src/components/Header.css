@@ -1,0 +1,168 @@
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: rgba(255, 255, 255, 0.96);
+  border-bottom: 1px solid #eef1f4;
+  backdrop-filter: saturate(1.05) blur(4px);
+}
+
+.app-header__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.app-header__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.app-header__logo {
+  display: block;
+  height: clamp(48px, 8vw, 84px);
+  width: auto;
+  max-width: 100%;
+}
+
+.app-header__title {
+  font-weight: 800;
+  font-size: clamp(1.15rem, 2.5vw, 1.4rem);
+  color: #0d1a2b;
+}
+
+.app-header__nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 280px;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.app-header__nav-link {
+  color: #2f3a44;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 8px 10px;
+  border-radius: 10px;
+  transition: color 0.15s ease, background-color 0.15s ease;
+}
+
+.app-header__nav-link:hover {
+  color: #0e57ff;
+  background-color: #f1f5f9;
+}
+
+.app-header__nav-link.is-active {
+  color: #0e57ff;
+}
+
+.app-header__dashboard {
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  padding: 8px 14px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  color: #0d1a2b;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.app-header__dashboard:hover {
+  border-color: #d1d5db;
+  box-shadow: 0 6px 18px rgba(13, 26, 43, 0.08);
+}
+
+.app-header__cta {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.app-header__login {
+  text-decoration: none;
+}
+
+.app-header__user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.app-header__avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #0e57ff;
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+}
+
+.app-header__status {
+  font-size: 0.75rem;
+  color: rgba(13, 26, 43, 0.7);
+}
+
+@media (max-width: 1024px) {
+  .app-header__inner {
+    gap: 20px;
+  }
+
+  .app-header__logo {
+    height: clamp(44px, 10vw, 72px);
+  }
+}
+
+@media (max-width: 900px) {
+  .app-header__inner {
+    padding: 12px 16px;
+    gap: 16px;
+  }
+
+  .app-header__nav {
+    order: 3;
+    width: 100%;
+    justify-content: flex-start;
+    gap: 12px;
+  }
+
+  .app-header__cta {
+    order: 2;
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .app-header__brand {
+    gap: 12px;
+  }
+
+  .app-header__logo {
+    height: clamp(40px, 14vw, 60px);
+  }
+
+  .app-header__nav {
+    gap: 10px;
+  }
+
+  .app-header__dashboard {
+    flex: 1 1 160px;
+    text-align: center;
+  }
+
+  .app-header__cta {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
