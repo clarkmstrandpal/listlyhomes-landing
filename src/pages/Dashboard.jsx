@@ -138,7 +138,7 @@ export default function Dashboard(){
 
   async function refresh(){
     setLoading(true); setErr("");
-    try{ const list = await listLeadsTolerant({}); setRows(Array.isArray(list)?list:[]); }
+    try{ const list = await listLeadsTolerant({ limit: 100 }); setRows(Array.isArray(list)?list:[]); }
     catch(e){ setErr(typeof e?.message==="string"? e.message : String(e)); setRows([]); }
     finally{ setLoading(false); }
   }
