@@ -5,6 +5,7 @@ import Pricing from "./pages/Pricing";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import DiscoveryInbox from "./pages/DiscoveryInbox";
+import LeadDetail from "./pages/LeadDetail";
 import { AuthProvider, RequireAuth } from "./lib/auth";
 
 export default function App() {
@@ -21,6 +22,14 @@ export default function App() {
             element={
               <RequireAuth>
                 <Dashboard />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/lead/:id"
+            element={
+              <RequireAuth>
+                <LeadDetail />
               </RequireAuth>
             }
           />
