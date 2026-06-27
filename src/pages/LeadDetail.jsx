@@ -63,7 +63,7 @@ export default function LeadDetail() {
     setError("");
     setNotice("");
     try {
-      const body = await listLeads({});
+      const body = await listLeads({ limit: 100 });
       const rows = normalizeList(body);
       const match = rows.find(item => sameId(leadId(item), wantedId));
       if (!match) throw new Error("Lead was not found in the current approved lead list.");
