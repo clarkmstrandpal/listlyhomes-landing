@@ -1,4 +1,5 @@
-﻿import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { API_BASE, getToken } from "../lib/api";
 
 /* ---------------- API helpers (tolerant) ---------------- */
@@ -102,9 +103,20 @@ function statusDerived(it, nowMs){
   return base;
 }
 function sameId(a,b){ return String(a||"").toLowerCase()===String(b||"").toLowerCase(); }
+function valueOf(it, keys, fallback=""){
+  for(const key of keys){
+    const value = it && it[key];
+    if(value !== undefined && value !== null && String(value).trim() !== "") return value;
+  }
+  return fallback;
+}
+function leadId(it){ return valueOf(it, ["id", "lead_id", "pk", "sk"], ""); }
+function leadTitle(it){ return valueOf(it, ["title", "name", "headline", "lead_type", "role"], "(no title)"); }
+function leadSummary(it){ return valueOf(it, ["summary", "description", "message", "snippet", "original_text"], ""); }
 
 /* ---------------- Dashboard ---------------- */
 export default function Dashboard(){
+  const navigate = useNavigate();
   const [agent, setAgent] = useState(null);
   const [rows, setRows]   = useState([]);
   const [tab, setTab]     = useState("toclaim");
@@ -152,7 +164,7 @@ export default function Dashboard(){
       }
       if(z && !String(it.zip||"").startsWith(z)) return false;
       if(qq){
-        const hay = `${it.name||""} ${it.email||""} ${it.message||""} ${it.zip||""}`.toLowerCase();
+        const hay = `${leadTitle(it)} ${it.email||""} ${leadSummary(it)} ${it.intent||""} ${it.urgency||""} ${it.city||""} ${it.zip||""}`.toLowerCase();
         if(hay.indexOf(qq)===-1) return false;
       }
       return true;
@@ -181,6 +193,10 @@ export default function Dashboard(){
     }catch{}
   }
   async function onDelete(it){ pushDeleted(it); await onIgnore(it); }
+  function openLead(it){
+    const id = leadId(it);
+    if(id) navigate(`/lead/${encodeURIComponent(id)}`);
+  }
 
   const totals = useMemo(()=>{
     let total=rows.length, high=0, claimed=0, closed=0;
@@ -225,7 +241,7 @@ export default function Dashboard(){
         <table className="w-full table-auto">
           <thead>
             <tr className="t-head">
-              <th>Buyer</th><th>ZIP</th><th>Max Price</th><th>Beds</th><th>Baths</th><th>Score</th><th>Status</th><th>Source</th><th className="t-right">Actions</th>
+              <th>Lead</th><th>Intent</th><th>Urgency</th><th>Location</th><th>Max Price</th><th>Score</th><th>Status</th><th>Source</th><th className="t-right">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -235,13 +251,24 @@ export default function Dashboard(){
               const left = remainingSeconds(it, nowMs);
               const st = statusDerived(it, nowMs);
               const redSoon = st==="new" && left>0 && left<=180;
+              const id = leadId(it);
+              const summary = leadSummary(it);
               return (
-                <tr key={(it.id||it.lead_id||idx)} className="t-row">
-                  <td>{it.name || "(no name)"}{it.email? <div className="text-xs text-gray-500">{it.email}</div>:null}</td>
-                  <td>{it.zip||""}</td>
+                <tr
+                  key={(id||idx)}
+                  className="t-row"
+                  onClick={()=>openLead(it)}
+                  style={{cursor:id ? "pointer" : "default"}}
+                >
+                  <td>
+                    <div className="font-medium text-slate-900">{leadTitle(it)}</div>
+                    {summary ? <div className="text-xs text-gray-500 max-w-md truncate">{summary}</div> : null}
+                    {it.email? <div className="text-xs text-gray-500">{it.email}</div>:null}
+                  </td>
+                  <td>{valueOf(it, ["intent"], "")}</td>
+                  <td>{valueOf(it, ["urgency"], "")}</td>
+                  <td>{[valueOf(it, ["city"], ""), valueOf(it, ["zip"], "")].filter(Boolean).join(" ")}</td>
                   <td>{it.max_price?("$"+it.max_price):""}</td>
-                  <td>{it.beds||""}</td>
-                  <td>{it.baths||""}</td>
                   <td>{asInt(it.score,0) || ""}</td>
                   <td>{st}</td>
                   <td>{it.source||""}</td>
@@ -249,9 +276,9 @@ export default function Dashboard(){
                     {st==="new" && left>0 ? (
                       <div className="flex items-center gap-2 justify-end">
                         <span className={"mono " + (redSoon ? "text-red-600":"text-gray-500")}>{prettyTimer(left)}</span>
-                        <button className="btn btn-blue" onClick={()=>onClaim(it)}>Claim</button>
-                        <button className="btn btn-ghost" onClick={()=>onIgnore(it)}>Ignore</button>
-                        <button className="btn btn-ghost" title="Delete (local only)" onClick={()=>onDelete(it)}></button>
+                        <button className="btn btn-blue" onClick={(e)=>{e.stopPropagation(); onClaim(it);}}>Claim</button>
+                        <button className="btn btn-ghost" onClick={(e)=>{e.stopPropagation(); onIgnore(it);}}>Ignore</button>
+                        <button className="btn btn-ghost" title="Delete (local only)" onClick={(e)=>{e.stopPropagation(); onDelete(it);}}></button>
                       </div>
                     ) : st==="missed" ? (
                       <span className="text-gray-400">missed</span>
@@ -260,7 +287,7 @@ export default function Dashboard(){
                     ) : (
                       <div className="flex items-center gap-2 justify-end">
                         <span className="text-gray-500">open</span>
-                        <button className="btn btn-ghost" title="Delete (local only)" onClick={()=>onDelete(it)}></button>
+                        <button className="btn btn-ghost" title="Delete (local only)" onClick={(e)=>{e.stopPropagation(); onDelete(it);}}></button>
                       </div>
                     )}
                   </td>

@@ -163,7 +163,7 @@ export default function Landing(){
       </section>
 
       <footer className="text-center text-xs text-gray-500 py-6">
-         {new Date().getFullYear()} BuyerBoard. All rights reserved.
+         {new Date().getFullYear()} ListlyHomes. All rights reserved.
       </footer>
     </div>
   );

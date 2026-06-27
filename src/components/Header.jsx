@@ -15,7 +15,7 @@ export default function Header(){
       <div style={{maxWidth:1200, margin:"0 auto", padding:"10px 16px", display:"flex", alignItems:"center", gap:16}}>
         <Link to="/" style={{display:"inline-flex", alignItems:"center", gap:10, textDecoration:"none"}}>
           <img src="/img/horzontal_logo.png" alt="Listly Homes" style={{height:36, width:"auto"}} />
-          <span style={{fontWeight:800, fontSize:18, color:"#0D1A2B"}}>BuyerBoard</span>
+          <span style={{fontWeight:800, fontSize:18, color:"#0D1A2B"}}>ListlyHomes</span>
         </Link>
 
         <nav style={{marginLeft:24, display:"flex", gap:18, alignItems:"center"}}>
