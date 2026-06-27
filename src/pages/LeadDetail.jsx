@@ -46,6 +46,35 @@ function fallbackReply(lead) {
   return `Hi, I saw your request${origin}${place}.${context} Are you still looking for help? I would be glad to connect and see if I can point you in the right direction.`;
 }
 
+async function copyText(text) {
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    try {
+      await navigator.clipboard.writeText(text);
+      return;
+    } catch (_) {
+      // Fall back for HTTP beta sites where Clipboard API is blocked.
+    }
+  }
+
+  const textarea = document.createElement("textarea");
+  textarea.value = text;
+  textarea.setAttribute("readonly", "");
+  textarea.style.position = "fixed";
+  textarea.style.left = "-9999px";
+  textarea.style.top = "0";
+  document.body.appendChild(textarea);
+  textarea.focus();
+  textarea.select();
+  textarea.setSelectionRange(0, textarea.value.length);
+
+  try {
+    const copied = document.execCommand("copy");
+    if (!copied) throw new Error("Copy command was not accepted.");
+  } finally {
+    document.body.removeChild(textarea);
+  }
+}
+
 export default function LeadDetail() {
   const { id } = useParams();
   const wantedId = useMemo(() => {
@@ -87,10 +116,12 @@ export default function LeadDetail() {
 
   async function copyReply() {
     try {
-      await navigator.clipboard.writeText(suggestedReply);
+      await copyText(suggestedReply);
+      setError("");
       setNotice("Suggested reply copied.");
-    } catch {
-      setError("Could not copy the reply. Select the text and copy it manually.");
+    } catch (e) {
+      setNotice("");
+      setError(`Could not copy automatically. Select the suggested reply text and copy it manually.${e?.message ? ` (${e.message})` : ""}`);
     }
   }
 
